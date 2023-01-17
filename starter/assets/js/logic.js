@@ -36,7 +36,7 @@ function setTimer() {
 function questionsHandler() {
   if (this.value === questions[count].correctAnswer) {
     //when the answer is right Increase score
-    score++;
+    score+=15;
     let correctSound = new Audio("./starter/assets/sfx/correct.wav");
     correctSound.play();
   } else {
@@ -93,45 +93,26 @@ function endQuiz() {
   submit = document.querySelector("#submit");
   submit.addEventListener("click", userInitials);
 
-  //user initials
-  let userInitials = document.querySelector("#initials");
-  initials = userInitials.value;
 }
 
-// Function to save high score
-// function saveScore() {
-//   let score = document.querySelector("final-score");
-//   // let initials = document.querySelector('#intials');
-//     // Save the score to the local storage
-//   let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-//   highScores.push({ initials, score });
-//   localStorage.setItem("highScores", JSON.stringify(highScores));
-
-//   window.location.href = "highscores.html";
-  
-// };
-
+//get the user initials to display
 function userInitials() {
 
   let initialsInput = document.querySelector('#initials');
-  // if user enters more than 3 characters for initials
+  // check input/initials characters length
   if (initialsInput.value.length > 3) {
-      alert("You must only enter a maximum of 3 initials");
-      // clear the input field
+      alert("Initials must not be more 3 characters");
       initialsInput.value = "";
   } else {
-      // create new scoreInitials object
-      var scoreInitials = {
-          // Math.max to make sure score is always greater than or equal to 0
-          score: Math.max(timeLeft + 1, 0),
+      // user Initials and score object
+      var scoreAndInitials = {
+        
+          score: score,
           initials: initialsInput.value
       };
 
-      // adding uniqueKey so that localStorage data isn't overidden
-      var uniqueKey = Date.now();
-
       // Store highScores array in local storage with unique key
-      localStorage.setItem(uniqueKey, JSON.stringify(scoreInitials));
+      localStorage.setItem("score", JSON.stringify(scoreAndInitials));
 
       // Redirect to highscores page
       window.location.href = "highscores.html";

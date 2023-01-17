@@ -1,6 +1,6 @@
 window.onload = function () {
   // get the highscores ordered list
-  var scoreList = document.querySelector("#highscores");
+  var highScores = document.querySelector("#highscores");
 
   // setting variable for 'clear highscores' button
   clearScoreButton = document.querySelector("#clear");
@@ -25,16 +25,16 @@ window.onload = function () {
   // loop through the sorted scores array
   for (var i = 0; i < scores.length; i++) {
       // create a new list item
-      var li = document.createElement("li");
+      var output = document.createElement("li");
       // set the text content of list item to the score and initials
-      li.textContent = scores[i].score + " - " + scores[i].initials;
+      output.textContent = scores[i].initials + " - " + scores[i].score;
       // add list item to the highscores ordered list
-      scoreList.appendChild(li);
+      highScores.appendChild(output);
   }
 
   clearScoreButton.addEventListener("click", function() {
       localStorage.clear();
       // var ol = document.getElementById("highscores");
-      scoreList.innerHTML = "";
+      highScores.innerHTML = "";
   });
 };
