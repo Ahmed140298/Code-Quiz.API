@@ -34,7 +34,6 @@ window.onload = function () {
 
   clearScoreButton.addEventListener("click", function() {
       localStorage.clear();
-      // var ol = document.getElementById("highscores");
       highScores.innerHTML = "";
   });
 };
